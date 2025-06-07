@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "license": "ISC",
+  "scripts": {
+    "start": "node build",
+    "dev": "tsc-watch --onSuccess \"node build\"",
+    "build": "tsc ",
+    "vercel-build": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.9.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jose": "^6.0.11",
+    "prisma": "^6.9.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "tsc-watch": "^7.1.1"
+  }
+}

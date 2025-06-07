@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id       String    @id @default(uuid())
+  name     String
+  email    String    @unique
+  password String    @db.Text
+
+  ratings  Rating[]
+  reviews  Review[]
+  borrows  Borrow[]
+}
+
+model Books {
+  id       String     @id @default(uuid())
+  name     String
+  author   String
+  genre    GENRE
+  ratings  Rating[]
+  reviews  Review[]
+  borrows  Borrow[]
+}
+
+model Rating {
+  id      String  @id @default(uuid())
+  userId  String
+  bookId  String
+  rating  Int
+
+  user    User    @relation(fields: [userId], references: [id])
+  book    Books   @relation(fields: [bookId], references: [id])
+}
+
+model Review {
+  id      String  @id @default(uuid())
+  userId  String
+  bookId  String
+  review  String
+  learningReflection String
+  createdOn DateTime @default(now())
+  user    User    @relation(fields: [userId], references: [id])
+  book    Books   @relation(fields: [bookId], references: [id])
+}
+
+model Borrow {
+  id         String   @id @default(uuid())
+  userId     String
+  bookId     String
+  borrowedOn DateTime @default(now())
+  returnDate DateTime?
+
+  user       User     @relation(fields: [userId], references: [id])
+  book       Books    @relation(fields: [bookId], references: [id])
+}
+
+enum GENRE {
+  FICTION
+  NONFICTION
+  MYSTERY
+  SCIFI
+  FANTASY
+  BIOGRAPHY
+  HISTORY
+  ROMANCE
+}
