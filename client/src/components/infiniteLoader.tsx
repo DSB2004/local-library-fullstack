@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useBooksStore } from "../store/book.store";
 import { useInView } from "react-intersection-observer";
-import { LoaderCircle } from "lucide-react";
-
+import Skeleton from "./skeletonBookCard";
 export default function InfiniteLoader() {
   const { ref, inView } = useInView({
     threshold: 0,
@@ -14,9 +13,5 @@ export default function InfiniteLoader() {
       fetchNextPage();
     }
   }, [inView, fetchNextPage, hasNextPage]);
-  return (
-    <div ref={ref}>
-      {isFetchingNextPage ? <LoaderCircle className="animate-spin" /> : <></>}
-    </div>
-  );
+  return <div ref={ref}>{isFetchingNextPage ? <Skeleton /> : <></>}</div>;
 }

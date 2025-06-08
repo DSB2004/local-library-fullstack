@@ -1,29 +1,56 @@
-
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 type FilterInputs = {
   genre: string;
-  rating: string;
+  ratings: string;
   author: string;
   name: string;
 };
 
 export default function FilterForm() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
 
-  const { register, handleSubmit } = useForm<FilterInputs>();
+  const { register, handleSubmit, reset } = useForm<FilterInputs>({
+    defaultValues: {
+      genre: searchParams.get("genre") || "",
+      ratings: searchParams.get("ratings") || "",
+      author: searchParams.get("author") || "",
+      name: searchParams.get("name") || "",
+    },
+  });
+  useEffect(() => {
+    reset({
+      genre: searchParams.get("genre") || "",
+      ratings: searchParams.get("ratings") || "",
+      author: searchParams.get("author") || "",
+      name: searchParams.get("name") || "",
+    });
+  }, [location.search, reset]);
 
   const onSubmit = (data: FilterInputs) => {
-    const currentParams = new URLSearchParams(location.search);
+    const newParams = new URLSearchParams();
+
     Object.entries(data).forEach(([key, value]) => {
       if (value) {
-        currentParams.set(key, value);
-      } else {
-        currentParams.delete(key);
+        newParams.set(key, value);
       }
     });
-    navigate({ search: currentParams.toString() });
+
+    navigate({ search: newParams.toString() });
+  };
+
+  const clearFilters = () => {
+    reset({
+      genre: "",
+      ratings: "",
+      author: "",
+      name: "",
+    });
+    navigate({ search: "" });
   };
 
   return (
@@ -32,19 +59,17 @@ export default function FilterForm() {
       className="menu bg-base-200 text-base-content min-h-full w-80 sm:w-96 lg:w-[400px] p-6 space-y-6 rounded-lg shadow-lg"
     >
       <h2 className="text-xl font-bold">Add Filters</h2>
+
       <div className="form-control">
         <label className="label" htmlFor="genre">
           <span className="label-text font-medium">Genre</span>
         </label>
         <select
           id="genre"
-          defaultValue=""
           className="select select-bordered"
           {...register("genre")}
         >
-          <option disabled value="">
-            Pick a Genre
-          </option>
+          <option value="">Pick a Genre</option>
           <option value="FICTION">Fiction</option>
           <option value="NONFICTION">Nonfiction</option>
           <option value="MYSTERY">Mystery</option>
@@ -78,14 +103,16 @@ export default function FilterForm() {
               key={star}
               type="radio"
               value={star}
-              {...register("rating")}
-              name="rating"
+              {...register("ratings")}
+              name="ratings"
               className="mask mask-star bg-orange-400"
               aria-label={`${star} star`}
+              defaultChecked={searchParams.get("ratings") === String(star)}
             />
           ))}
         </div>
       </div>
+
       <div className="form-control">
         <label className="label" htmlFor="author">
           <span className="label-text font-medium">Author Name</span>
@@ -98,6 +125,7 @@ export default function FilterForm() {
           {...register("author")}
         />
       </div>
+
       <div className="form-control">
         <label className="label" htmlFor="name">
           <span className="label-text font-medium">Book Name</span>
@@ -110,9 +138,17 @@ export default function FilterForm() {
           {...register("name")}
         />
       </div>
-      <div className="form-control pt-2">
+
+      <div className="form-control pt-2 space-y-2">
         <button type="submit" className="btn btn-primary w-full">
           Apply Filters
+        </button>
+        <button
+          type="button"
+          className="btn btn-secondary w-full"
+          onClick={clearFilters}
+        >
+          Clear Filters
         </button>
       </div>
     </form>
