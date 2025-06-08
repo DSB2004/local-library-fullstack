@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node build",
     "dev": "tsc-watch --onSuccess \"node build\"",
-    "build": "tsc ",
+    "build": "tsc && prisma generate",
     "vercel-build": "prisma generate"
   },
   "dependencies": {
