@@ -28,7 +28,8 @@ This API allows you to interact with the Local Library Portal for managing user 
 - **403 Forbidden: Forbidden access**: Token invalid or not given
 - **400 Bad Request**: Parameter or Body missing in request
 - **500 Internal Server Error**: Server-side issue.
---- 
+
+---
 
 ## API Documentation
 
@@ -257,7 +258,7 @@ This API allows you to interact with the Local Library Portal for managing user 
 
 ### Return Book
 
-**DELETE** `/api/v1/borrow/bookid`
+**DELETE** `/api/v1/borrow/borrowid`
 
 **Authorization**: `Bearer <token>`
 

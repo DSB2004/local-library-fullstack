@@ -28,7 +28,8 @@ model User {
 model Books {
   id       String     @id @default(uuid())
   name     String
-  author   String
+  author   String 
+  description String? @db.Text 
   genre    GENRE
   ratings  Rating[]
   reviews  Review[]
@@ -66,7 +67,6 @@ model Borrow {
   user       User     @relation(fields: [userId], references: [id])
   book       Books    @relation(fields: [bookId], references: [id])
 }
-
 enum GENRE {
   FICTION
   NONFICTION
@@ -76,4 +76,16 @@ enum GENRE {
   BIOGRAPHY
   HISTORY
   ROMANCE
+  THRILLER
+  HORROR
+  SELFHELP
+  PHILOSOPHY
+  POETRY
+  BUSINESS
+  TRAVEL
+  HEALTH
+  SCIENCE
+  RELIGION
+  CHILDREN
+  EDUCATION
 }

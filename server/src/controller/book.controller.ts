@@ -4,13 +4,13 @@ import { ErrorType } from "../types";
 
 export class BooksController {
   static async GetBooksController(req: Request, res: Response): Promise<any> {
-    const { author, rating, name, genre, page, limit } = req.query;
+    const { author, ratings, name, genre, page, limit } = req.query;
     try {
       const books = await Books.getBooks({
         name: String(name),
         genre: String(genre),
         author: String(author),
-        rating: Number(rating || 0),
+        ratings: Number(ratings || 0),
         page: Number(page || 1),
         limit: Number(limit || 10),
       });

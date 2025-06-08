@@ -3,14 +3,14 @@ export class Books {
   static async getBooks({
     name,
     genre,
-    rating,
+    ratings,
     author,
     page = 1,
     limit = 10,
   }: {
     name?: string;
     genre?: string;
-    rating?: number;
+    ratings?: number;
     author?: string;
     page?: number;
     limit?: number;
@@ -30,31 +30,75 @@ export class Books {
         filters.author = { contains: author, lte: "insensitive" };
       }
 
-      if (rating && !isNaN(rating)) {
-        filters.rating = { gte: rating };
+      if (ratings && !isNaN(ratings)) {
+        filters.ratings = {
+          some: {
+            rating: {
+              gte: ratings,
+            },
+          },
+        };
       }
 
       const total = await prisma.books.count({ where: filters });
 
       const totalPages = Math.ceil(total / limit);
-
       const books = await prisma.books.findMany({
         where: filters,
         skip: (page - 1) * limit,
         take: limit,
+        include: {
+          _count: {
+            select: {
+              borrows: true,
+              reviews: true,
+              ratings: true,
+            },
+          },
+          ratings: {
+            select: {
+              rating: true,
+              user: {
+                select: {
+                  name: true,
+                  email: true,
+                },
+              },
+            },
+          },
+        },
+      });
+      const formattedBooks = books.map((book) => {
+        const { _count, ratings, ...bookRest } = book;
+        const avgRating =
+          ratings && ratings.length > 0
+            ? ratings.reduce((sum, rating) => sum + rating.rating, 0) /
+              ratings.length
+            : 0;
+        return {
+          ...bookRest,
+          ratings,
+          avgRating,
+          stats: {
+            borrowCount: _count.borrows,
+            reviewCount: _count.reviews,
+            ratingCount: _count.ratings,
+          },
+        };
       });
 
       const next = page < totalPages ? page + 1 : null;
       const prev = page > 1 ? page - 1 : null;
 
       return {
-        books,
+        books: formattedBooks,
         page,
         next,
         prev,
         total,
       };
     } catch (error: any) {
+      console.log("[ERROR HAPPENDED]", error.message);
       if (error instanceof Error && error.message.startsWith("{")) throw error;
       throw new Error(
         JSON.stringify({ message: "Unable to fetch books", status: 500 })
@@ -76,15 +120,18 @@ export class Books {
 
       const ratings = await prisma.rating.findMany({
         where: { bookId },
-        select: { rating: true },
+        select: { rating: true, user: { select: { name: true, email: true } } },
       });
 
       const totalRatings = ratings.length;
+      const totalBorrow = await prisma.borrow.count({ where: { book } });
+      const totalReview = await prisma.review.count({ where: { book } });
+
       const avgRating =
         totalRatings > 0
           ? ratings.reduce((sum: number, r: any) => sum + r.rating, 0) /
             totalRatings
-          : null;
+          : 0;
 
       const topReviews = await prisma.review.findMany({
         where: { bookId },
@@ -96,6 +143,7 @@ export class Books {
           user: {
             select: {
               name: true,
+              email: true,
             },
           },
         },
@@ -103,9 +151,12 @@ export class Books {
 
       return {
         ...book,
-        averageRating: avgRating ? parseFloat(avgRating.toFixed(2)) : null,
-        ratingOutOf: 5,
+        totalBorrow,
         totalRatings,
+        totalReview,
+        averageRating: avgRating ? parseFloat(avgRating.toFixed(2)) : 0,
+        ratingOutOf: 5,
+        ratings,
         topReviews,
       };
     } catch (error: any) {

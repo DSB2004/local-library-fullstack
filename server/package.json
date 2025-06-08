@@ -10,10 +10,11 @@
   "scripts": {
     "start": "node build",
     "dev": "tsc-watch --onSuccess \"node build\"",
-    "build": "tsc && prisma generate",
+    "build": "tsc && prisma db push && prisma generate",
     "vercel-build": "prisma generate"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.0",
     "@prisma/client": "^6.9.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
@@ -21,7 +22,10 @@
     "express": "^5.1.0",
     "jose": "^6.0.11",
     "jsonwebtoken": "^9.0.2",
-    "prisma": "^6.9.0"
+    "prisma": "^6.9.0",
+    "react-form-hook": "^0.0.1",
+    "react-hook-form": "^7.57.0",
+    "zod": "^3.25.56"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
