@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { AddReview, AddOrUpdateRating } from "../actions/interaction.action";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { LoaderCircle } from "lucide-react";
 
 const ReviewSchema = z.object({
   rating: z.number().min(1, { message: "Rating is required" }).max(5),
@@ -19,7 +20,7 @@ export default function ReviewCard({ bookId }: { bookId: string }) {
     control,
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     setValue,
   } = useForm<ReviewFormInputs>({
     resolver: zodResolver(ReviewSchema),
@@ -110,8 +111,16 @@ export default function ReviewCard({ bookId }: { bookId: string }) {
               >
                 Cancel
               </button>
-              <button type="submit" className="btn btn-primary">
-                Submit Review
+              <button
+                type="submit"
+                className="btn btn-primary disabled:opacity-50"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <LoaderCircle className="animate-spin" />
+                ) : (
+                  <>Submit Review</>
+                )}
               </button>
             </div>
           </form>
