@@ -4,7 +4,7 @@ import { z } from "zod";
 import { LoaderCircle } from "lucide-react";
 import { Signup } from "../actions/auth.action";
 import { useToast } from "../provider/toast.provider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 type SignupInput = {
   name: string;
   email: string;
@@ -24,7 +24,6 @@ export default function SignupForm() {
   } = useForm<SignupInput>({
     resolver: zodResolver(SignupSchema),
   });
-  const navigate = useNavigate();
 
   const onSubmit = async (data: SignupInput) => {
     try {

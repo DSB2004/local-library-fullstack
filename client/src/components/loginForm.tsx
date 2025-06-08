@@ -4,14 +4,13 @@ import { z } from "zod";
 import { useToast } from "../provider/toast.provider";
 import { LoaderCircle } from "lucide-react";
 import { Login } from "../actions/auth.action";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 type LoginInput = {
   email: string;
   password: string;
 };
 export default function LoginForm() {
   const { showToast } = useToast();
-  const navigate = useNavigate();
   const LoginSchema = z.object({
     email: z.string().email("Invalid email"),
     password: z.string().min(6, "Password must be at least 6 characters"),
