@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -36,7 +35,7 @@ export default function SignupForm() {
       );
       localStorage.setItem("AccessToken", token);
       showToast(message, "success");
-      navigate("/");
+      window.location.href = "/";
     } catch (err: any) {
       const message = (err.message as string) || "Error happended while login";
       showToast(message, "error");
