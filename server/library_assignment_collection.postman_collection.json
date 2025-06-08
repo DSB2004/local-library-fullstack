@@ -4,7 +4,7 @@
 		"name": "library_assignment_collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36422107",
-		"_collection_link": "https://dashx-testing.postman.co/workspace/ee422f8e-aa49-4ac9-8525-5f03486ce560/collection/36422107-00e2f877-d029-4211-a2ad-54962670be1d?action=share&source=collection_link&creator=36422107"
+		"_collection_link": "https://dashx-testing.postman.co/workspace/Dashx-Testing-Workspace~ee422f8e-aa49-4ac9-8525-5f03486ce560/collection/36422107-00e2f877-d029-4211-a2ad-54962670be1d?action=share&source=collection_link&creator=36422107"
 	},
 	"item": [
 		{
@@ -53,7 +53,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/books/?page=1&genre=nonfiction",
+							"raw": "http://localhost:3000/api/v1/books",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -62,18 +62,7 @@
 							"path": [
 								"api",
 								"v1",
-								"books",
-								""
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1"
-								},
-								{
-									"key": "genre",
-									"value": "nonfiction"
-								}
+								"books"
 							]
 						}
 					},
@@ -85,7 +74,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/books/fb868e25-ea50-4872-a9ed-64b075a5ce67",
+							"raw": "http://localhost:3000/api/v1/books/2233ee1e-4d94-495d-a44a-33fca38b0686",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -95,7 +84,7 @@
 								"api",
 								"v1",
 								"books",
-								"fb868e25-ea50-4872-a9ed-64b075a5ce67"
+								"2233ee1e-4d94-495d-a44a-33fca38b0686"
 							]
 						}
 					},
@@ -143,7 +132,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"daman\",\r\n    \"email\":\"daman123@ex.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"raw": "{\r\n    \"name\":\"daman\",\r\n    \"email\":\"daman1231123@ex.com\",\r\n    \"password\":\"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

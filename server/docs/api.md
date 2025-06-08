@@ -86,70 +86,174 @@ This API allows you to interact with the Local Library Portal for managing user 
   "message": "Books found",
   "books": [
     {
-      "id": "064c8f30-df56-4898-8ba3-cf01bc2a947a",
-      "name": "Sapiens: A Brief History of Humankind",
-      "author": "Yuval Noah Harari",
-      "genre": "NONFICTION"
-    },
-    {
-      "id": "0f94c203-f0d1-42ee-8802-5cc6003e77eb",
-      "name": "The Great Gatsby",
-      "author": "F. Scott Fitzgerald",
-      "genre": "FICTION"
-    },
-    {
-      "id": "1a30d708-ef92-4bd2-b86e-8e61dd46ec51",
-      "name": "Pride and Prejudice",
-      "author": "Jane Austen",
-      "genre": "ROMANCE"
-    },
-    {
-      "id": "35379cdc-d33f-489f-b962-c1f6e48a7043",
-      "name": "Sapiens: A Brief History of Humankind",
-      "author": "Yuval Noah Harari",
-      "genre": "NONFICTION"
-    },
-    {
-      "id": "64af46ad-fd1e-4c70-bc6f-a3bd2c1c4e71",
-      "name": "Pride and Prejudice",
-      "author": "Jane Austen",
-      "genre": "ROMANCE"
-    },
-    {
-      "id": "9565b2b9-bd01-4b22-88a4-cb851bca1012",
-      "name": "Harry Potter and the Sorcerer's Stone",
-      "author": "J.K. Rowling",
-      "genre": "FANTASY"
-    },
-    {
-      "id": "9714398b-4435-4a46-b0c7-239642561577",
+      "id": "2233ee1e-4d94-495d-a44a-33fca38b0686",
       "name": "The Hound of the Baskervilles",
       "author": "Arthur Conan Doyle",
-      "genre": "MYSTERY"
+      "description": "Sherlock Holmes investigates a legendary curse that plagues the Baskerville family.",
+      "genre": "MYSTERY",
+      "ratings": [
+        {
+          "rating": 5,
+          "user": {
+            "name": "Damanjeet Singh",
+            "email": "damanjeetsingh434@gmail.com"
+          }
+        }
+      ],
+      "avgRating": 5,
+      "stats": {
+        "borrowCount": 9,
+        "reviewCount": 9,
+        "ratingCount": 1
+      }
     },
     {
-      "id": "983f6aa3-2447-4eb8-ad06-577f44b57d03",
+      "id": "3b576eeb-6e11-42a7-8dc8-4129e80605a0",
       "name": "Steve Jobs",
       "author": "Walter Isaacson",
-      "genre": "BIOGRAPHY"
+      "description": "A riveting biography of Apple’s visionary founder and his revolutionary impact on technology.",
+      "genre": "BIOGRAPHY",
+      "ratings": [
+        {
+          "rating": 5,
+          "user": {
+            "name": "Damanjeet Singh",
+            "email": "damanjeetsingh434@gmail.com"
+          }
+        }
+      ],
+      "avgRating": 5,
+      "stats": {
+        "borrowCount": 7,
+        "reviewCount": 3,
+        "ratingCount": 1
+      }
     },
     {
-      "id": "b1b44978-33f5-4223-bd43-593d8e81b7d3",
+      "id": "3c73ac86-42aa-4340-9c22-9e54a8c3e66c",
+      "name": "The Alchemist",
+      "author": "Paulo Coelho",
+      "description": "A young shepherd follows his dreams in search of treasure and self-discovery.",
+      "genre": "FICTION",
+      "ratings": [
+        {
+          "rating": 3,
+          "user": {
+            "name": "Damanjeet Singh",
+            "email": "damanjeetsingh434@gmail.com"
+          }
+        }
+      ],
+      "avgRating": 3,
+      "stats": {
+        "borrowCount": 2,
+        "reviewCount": 1,
+        "ratingCount": 1
+      }
+    },
+    {
+      "id": "5710ef1f-6d0a-4d4b-8023-aacb31f291a5",
+      "name": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "description": "A witty romantic novel about societal expectations and finding love in unexpected places.",
+      "genre": "ROMANCE",
+      "ratings": [],
+      "avgRating": 0,
+      "stats": {
+        "borrowCount": 3,
+        "reviewCount": 0,
+        "ratingCount": 0
+      }
+    },
+    {
+      "id": "58e73709-6efb-49ea-a2ce-be5553048ac2",
+      "name": "Sapiens: A Brief History of Humankind",
+      "author": "Yuval Noah Harari",
+      "description": "An insightful exploration of human evolution and the forces that shaped civilization.",
+      "genre": "NONFICTION",
+      "ratings": [],
+      "avgRating": 0,
+      "stats": {
+        "borrowCount": 2,
+        "reviewCount": 0,
+        "ratingCount": 0
+      }
+    },
+    {
+      "id": "5a92f39d-fc73-4bfc-b631-b8e9bd48ba6c",
+      "name": "The Power of Now",
+      "author": "Eckhart Tolle",
+      "description": "A spiritual guide to living in the present and finding peace in the moment.",
+      "genre": "NONFICTION",
+      "ratings": [],
+      "avgRating": 0,
+      "stats": {
+        "borrowCount": 1,
+        "reviewCount": 0,
+        "ratingCount": 0
+      }
+    },
+    {
+      "id": "5f553714-8673-4f6f-9035-bc435ac0f005",
+      "name": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "description": "A reluctant hobbit embarks on an adventurous quest to reclaim a lost dwarf kingdom.",
+      "genre": "FANTASY",
+      "ratings": [],
+      "avgRating": 0,
+      "stats": {
+        "borrowCount": 0,
+        "reviewCount": 0,
+        "ratingCount": 0
+      }
+    },
+    {
+      "id": "6a073720-820b-478f-b403-4cf633b19be2",
+      "name": "The Silent Patient",
+      "author": "Alex Michaelides",
+      "description": "A therapist unravels the mystery behind a woman's silence after she murders her husband.",
+      "genre": "MYSTERY",
+      "ratings": [],
+      "avgRating": 0,
+      "stats": {
+        "borrowCount": 0,
+        "reviewCount": 0,
+        "ratingCount": 0
+      }
+    },
+    {
+      "id": "6c181df1-f51c-47d5-8ea6-cd2f8c4a1f84",
       "name": "Guns, Germs, and Steel",
       "author": "Jared Diamond",
-      "genre": "HISTORY"
+      "description": "An exploration of how geography and environment influenced the fate of civilizations.",
+      "genre": "HISTORY",
+      "ratings": [],
+      "avgRating": 0,
+      "stats": {
+        "borrowCount": 0,
+        "reviewCount": 0,
+        "ratingCount": 0
+      }
     },
     {
-      "id": "b76f020a-61c6-4553-91d4-fef7009b2bd1",
-      "name": "Dune",
-      "author": "Frank Herbert",
-      "genre": "SCIFI"
+      "id": "718328d0-4bb4-466a-aba1-ef079accca3d",
+      "name": "Brave New World",
+      "author": "Aldous Huxley",
+      "description": "A futuristic society driven by technology and conformity challenges individuality.",
+      "genre": "FICTION",
+      "ratings": [],
+      "avgRating": 0,
+      "stats": {
+        "borrowCount": 0,
+        "reviewCount": 0,
+        "ratingCount": 0
+      }
     }
   ],
   "page": 1,
   "next": 2,
   "prev": null,
-  "total": 16
+  "total": 20
 }
 ```
 
