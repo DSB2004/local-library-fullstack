@@ -34,7 +34,7 @@ It is built with:
 ### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/local-library-portal.git
+git clone https://github.com/DSB2004/local_library_portal.git
 cd local-library-portal/server
 ```
 

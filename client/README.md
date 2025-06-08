@@ -1,54 +1,97 @@
-# React + TypeScript + Vite
+# Local Library Portal - Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **client-side** application of the **Local Library Portal**, built with **React**, **TypeScript**, **Vite**, **TailwindCSS**, and integrated with a backend API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Deployment
 
-## Expanding the ESLint configuration
+Visit the live version here:  
+👉 **[https://local-library-portal-yxcr.vercel.app/](https://local-library-portal-yxcr.vercel.app/)**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Ensure your backend server is live and accessible to enable full functionality.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## Local Development Setup
+
+Follow these steps to run the project locally:
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/DSB2004/local_library_portal.git
+cd local-library-portal/client
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Setting Up Env
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Create a .env file in the root of the project.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+- Use the .env.example file provided in the repository as a reference.
+
+```bash
+# .env
+VITE_APP_BACKEND_API=http://localhost:3000
+
 ```
+
+### Running Server Locally
+
+#### Choose a runtime environment for typescript **bun** ,**yarn** or **npm**
+
+#### Install dependencies:
+
+```bash
+# npm
+npm install
+
+# bun
+bun i
+
+# yarn
+yarn install
+
+```
+
+#### Start the development server:
+
+```bash
+# npm
+npm run dev
+
+# bun
+bun run dev
+
+# yarn
+yarn dev
+```
+
+#### To build and run:
+
+```bash
+# npm
+npm run build
+
+# bun
+bun run build
+
+# yarn
+yarn build
+```
+
+---
+
+## Tech Stack Used
+
+- React with TypeScript
+
+- Vite for blazing-fast build
+
+- TailwindCSS for styling
+
+- Zod for form validation
+
+- React Hook Form for controlled inputs
+
+- TanStack Query (React Query) for data fetching and caching
